@@ -78,6 +78,23 @@ def home():
 				})
 
 	# =========================
+	# PROJECT GALLERY
+	# =========================
+
+	gallery_path = os.path.join(app.static_folder, "img", "gallery")
+	gallery_files = []
+
+	if os.path.exists(gallery_path):
+		gallery_files = sorted([
+			f for f in os.listdir(gallery_path)
+			if f.lower().endswith((".png", ".jpg", ".jpeg", ".webp"))
+		])
+
+	gallery_main = gallery_files[:5]
+	gallery_extra = gallery_files[5:25]
+	gallery_all = gallery_main + gallery_extra
+
+	# =========================
 	# DUMMY GOOGLE REVIEWS
 	# =========================
 
@@ -147,6 +164,9 @@ def home():
 	return render_template(
 		"home.html",
 		images=images,
+		gallery_main=gallery_main,
+		gallery_extra=gallery_extra,
+		gallery_all=gallery_all,
 		reviews=reviews
 	)
 

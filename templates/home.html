@@ -358,6 +358,37 @@
 				</div>
 			</section>
 
+			<section class="gallery-section">
+
+				<h2>Our Work</h2>
+				<p class="gallery-sub">A few recent jobs — tap any photo to browse the full gallery.</p>
+
+				<div class="gallery-strip-wrap">
+					<div class="gallery-strip" id="galleryStrip">
+
+						{% for img in gallery_main %}
+						<div class="gallery-strip-item" onclick="openGallery({{ loop.index0 }})">
+							<img src="{{ url_for('static', filename='img/gallery/' + img) }}" alt="Roland's Handyman — recent job" loading="lazy">
+						</div>
+						{% endfor %}
+
+						{% for img in gallery_main %}
+						<div class="gallery-strip-item" aria-hidden="true" onclick="openGallery({{ loop.index0 }})">
+							<img src="{{ url_for('static', filename='img/gallery/' + img) }}" alt="" loading="lazy">
+						</div>
+						{% endfor %}
+
+					</div>
+				</div>
+
+				<div class="gallery-cta-wrap">
+					<button type="button" class="btn-primary" onclick="openGallery(0)">
+						View Full Gallery ({{ gallery_all|length }})
+					</button>
+				</div>
+
+			</section>
+
 			<section class="reviews-section">
 				<h2>Customer Reviews</h2>
 
@@ -577,8 +608,82 @@
 			</div>
 		</div>
 
+		<div id="galleryModal" class="modal-backdrop" style="display:none;">
+			<div class="modal gallery-modal">
+
+				<button type="button" class="gallery-close" onclick="closeGallery()" aria-label="Close">&times;</button>
+
+				<div class="gallery-viewer">
+					<button type="button" class="gallery-nav" onclick="galleryStep(-1)" aria-label="Previous photo">&#10094;</button>
+
+					<img id="galleryImage" src="" alt="Roland's Handyman — job photo">
+
+					<button type="button" class="gallery-nav" onclick="galleryStep(1)" aria-label="Next photo">&#10095;</button>
+				</div>
+
+				<div class="gallery-counter" id="galleryCounter"></div>
+
+			</div>
+		</div>
+
 <script>
 	document.addEventListener("DOMContentLoaded", () => {
+
+		/* =========================
+		   PROJECT GALLERY
+		========================= */
+
+		const galleryImages = {{ gallery_all|tojson }};
+		let galleryIndex = 0;
+
+		function updateGalleryImage(){
+			if(!galleryImages.length){ return; }
+			const img = document.getElementById("galleryImage");
+			img.src = "{{ url_for('static', filename='img/gallery/') }}" + galleryImages[galleryIndex];
+			document.getElementById("galleryCounter").textContent = (galleryIndex + 1) + " / " + galleryImages.length;
+		}
+
+		function openGallery(index){
+			galleryIndex = index || 0;
+			updateGalleryImage();
+			document.getElementById("galleryModal").style.display = "flex";
+		}
+
+		function closeGallery(){
+			document.getElementById("galleryModal").style.display = "none";
+		}
+
+		function galleryStep(dir){
+			if(!galleryImages.length){ return; }
+			galleryIndex = (galleryIndex + dir + galleryImages.length) % galleryImages.length;
+			updateGalleryImage();
+		}
+
+		document.addEventListener("keydown", (e) => {
+			const modal = document.getElementById("galleryModal");
+			if(modal.style.display !== "flex"){ return; }
+			if(e.key === "ArrowLeft"){ galleryStep(-1); }
+			if(e.key === "ArrowRight"){ galleryStep(1); }
+			if(e.key === "Escape"){ closeGallery(); }
+		});
+
+		let gTouchStartX = null;
+		const galleryViewer = document.querySelector(".gallery-viewer");
+		if(galleryViewer){
+			galleryViewer.addEventListener("touchstart", (e) => {
+				gTouchStartX = e.changedTouches[0].clientX;
+			});
+			galleryViewer.addEventListener("touchend", (e) => {
+				if(gTouchStartX === null){ return; }
+				const diff = e.changedTouches[0].clientX - gTouchStartX;
+				if(Math.abs(diff) > 40){ galleryStep(diff > 0 ? -1 : 1); }
+				gTouchStartX = null;
+			});
+		}
+
+		window.openGallery = openGallery;
+		window.closeGallery = closeGallery;
+		window.galleryStep = galleryStep;
 
 		/* =========================
 		   REVIEWS SHOW MORE -> GOOGLE LINK
