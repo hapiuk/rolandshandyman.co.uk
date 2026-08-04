@@ -364,7 +364,8 @@
 				<div class="reviews-grid">
 
 					{% for review in reviews %}
-					<div class="card review-card{% if loop.index > 3 %} review-extra{% endif %}"{% if loop.index > 3 %} style="display:none;"{% endif %}>
+					<div class="card review-card{% if loop.index > 6 %} review-extra{% endif %}"
+					     {% if loop.index > 6 %} style="display:none;"{% endif %}>
 
 						<div class="review-header">
 							<div class="stars">
@@ -391,13 +392,25 @@
 
 				</div>
 
-				{% if reviews|length > 3 %}
+				{% if reviews|length > 6 %}
 				<div class="reviews-toggle-wrap">
 					<a href="#" id="reviewsToggleBtn" class="btn-primary" onclick="return handleReviewsClick(event)">
 						Show more reviews
 					</a>
 				</div>
 				{% endif %}
+
+				<div class="review-cta">
+					<p>Had a great experience? We'd love to hear your feedback.</p>
+
+					<a href="https://g.page/r/CexidGdXUTMsEAE/review"
+					   target="_blank"
+					   rel="noopener noreferrer"
+					   class="btn-primary review-btn">
+						⭐ Leave a Google Review
+					</a>
+				</div>
+
 			</section>
 
 		</main>
@@ -584,7 +597,7 @@
 					card.style.display = "flex";
 				});
 
-				btn.textContent = "See more & leave a review on Google";
+				btn.textContent = "See more reviews on Google";
 				btn.href = "https://business.google.com/v/rolands-handyman/015522923833506136310/2242/_/rev/";
 				btn.target = "_blank";
 				btn.rel = "noopener";
