@@ -1,0 +1,1003 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='img/apple-touch-icon.png') }}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='img/favicon-32x32.png') }}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='img/favicon-16x16.png') }}">
+	<link rel="manifest" href="{{ url_for('static', filename='img/site.webmanifest') }}">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Roland's Handyman</title>
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+	<div class="container">
+
+		<header class="site-header">
+			<div class="brand">
+				<img
+					src="{{ url_for('static', filename='img/rolandslogo.png') }}"
+					alt="Roland's Handyman Logo"
+					class="logo"
+				>
+				<div>
+					<div class="site-title">Roland's Handyman</div>
+					<div class="site-tag">Reliable • Local • Professional</div>
+				</div>
+			</div>
+
+			<nav>
+				<button class="btn-primary" onclick="openContact()">
+					Contact
+				</button>
+			</nav>
+		</header>
+
+		<main>
+
+			<!-- HERO -->
+			<section class="hero hero-full">
+				<img
+					id="heroImage"
+					class="hero-bg"
+					src="{{ url_for('static', filename=images[0]) if images }}"
+					alt="Recent work"
+				>
+
+				<div class="hero-overlay">
+					<h1>Home maintenance done right</h1>
+					<p>
+						Fast, friendly, and tidy — everything from small fixes to
+						carefully finished projects.
+					</p>
+					<button class="btn-primary" onclick="openContact()">
+						Request a quote
+					</button>
+				</div>
+			</section>
+
+			<!-- SERVICES -->
+
+			<section>
+
+				<h2>Furniture Assembly</h2>
+				<p>
+					Professional flat-pack assembly you can trust. All work is completed
+					personally by Rolands — no subcontractors, no shortcuts.
+				</p>
+
+				<div class="grid">
+
+					<div class="card service accordion">
+						<button class="accordion-toggle" type="button">
+							<span>What’s Included</span>
+							<span class="accordion-icon">+</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								Flat-pack furniture assembly for homes and offices including
+								beds, wardrobes, desks, tables, storage units, shelving,
+								and cabinets.
+							</p>
+						</div>
+					</div>
+
+					<div class="card service accordion">
+						<button class="accordion-toggle" type="button">
+							<span>Why Choose Rolands</span>
+							<span class="accordion-icon">+</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								✔ Personally assembled by Rolands<br>
+								✔ Correct tools for every job<br>
+								✔ Careful, precise workmanship<br>
+								✔ Final safety and stability check<br>
+								✔ Clean, tidy finish
+							</p>
+						</div>
+					</div>
+
+					<div class="card service accordion">
+						<button class="accordion-toggle" type="button">
+							<span>Simple & Stress-Free</span>
+							<span class="accordion-icon">+</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								Book your assembly → Rolands arrives on time →
+								furniture assembled properly → final check and clean-up.
+							</p>
+						</div>
+					</div>
+
+				</div>
+
+			</section>
+
+			<section>
+
+				<h2>Wall Mounting Service</h2>
+				<p>
+					Secure, precise wall mounting — done properly by Rolands using
+					the correct fixings for your wall type.
+				</p>
+
+				<div class="grid">
+
+					<div class="card service accordion">
+						<button class="accordion-toggle" type="button">
+							<span>What Can Be Mounted</span>
+							<span class="accordion-icon">+</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								TVs and brackets, shelves, floating shelves, pictures,
+								artwork, mirrors, small cabinets, and wall units.
+							</p>
+						</div>
+					</div>
+
+					<div class="card service accordion">
+						<button class="accordion-toggle" type="button">
+							<span>Why Choose Rolands</span>
+							<span class="accordion-icon">+</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								✔ Personally completed by Rolands<br>
+								✔ Correct fixings for all wall types<br>
+								✔ Accurate measuring and levelling<br>
+								✔ Secure, safe installation<br>
+								✔ Clean, tidy finish
+							</p>
+						</div>
+					</div>
+
+					<div class="card service accordion">
+						<button class="accordion-toggle" type="button">
+							<span>How It Works</span>
+							<span class="accordion-icon">+</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								You choose the position → wall type and load checked →
+								item securely mounted → final safety check and clean-up.
+							</p>
+						</div>
+					</div>
+
+				</div>
+
+			</section>
+
+			<section>
+
+				<h2>Minor Electrical Work</h2>
+				<p>
+					Safe, careful minor electrical work completed professionally by Rolands.
+					Work is limited to non-complex electrical tasks only.
+				</p>
+
+				<div class="grid">
+
+					<div class="card service accordion">
+						<button class="accordion-toggle" type="button">
+							<span>What I Can Help With</span>
+							<span class="accordion-icon">+</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								Replacing light fittings and lamps<br>
+								Changing switches and power sockets<br>
+								Installing ceiling and wall lights<br>
+								Replacing damaged faceplates<br>
+								Basic electrical fixes and adjustments
+							</p>
+						</div>
+					</div>
+
+					<div class="card service accordion">
+						<button class="accordion-toggle" type="button">
+							<span>Why Choose Rolands</span>
+							<span class="accordion-icon">+</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								✔ Personally completed by Rolands<br>
+								✔ Careful, methodical approach<br>
+								✔ Clean, tidy workmanship<br>
+								✔ Respect for safety and your home<br>
+								✔ Honest advice
+							</p>
+						</div>
+					</div>
+
+					<div class="card service accordion">
+						<button class="accordion-toggle" type="button">
+							<span>Important Safety Note</span>
+							<span class="accordion-icon">+</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								I only carry out minor electrical work within permitted limits.
+								If a job requires a licensed electrician, I’ll let you know
+								immediately — your safety always comes first.
+							</p>
+						</div>
+					</div>
+
+				</div>
+
+			</section>
+
+			<section>
+
+				<h2>Minor Plumbing Work</h2>
+				<p>
+					Reliable minor plumbing work — completed carefully by Rolands.
+					Small, non-complex tasks handled with attention to detail and cleanliness.
+				</p>
+
+				<div class="grid">
+
+					<div class="card service accordion">
+						<button class="accordion-toggle" type="button">
+							<span>What I Can Help With</span>
+							<span class="accordion-icon">+</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								Replacing taps and mixers<br>
+								Fixing minor leaks (taps, traps, connections)<br>
+								Installing shower heads and hoses<br>
+								Replacing toilet seats and flush buttons<br>
+								Connecting washing machines and dishwashers<br>
+								Replacing waste traps and flexible hoses
+							</p>
+							<p style="margin-top:8px; font-size:0.85rem;">
+								(Work limited to minor plumbing tasks only)
+							</p>
+						</div>
+					</div>
+
+					<div class="card service accordion">
+						<button class="accordion-toggle" type="button">
+							<span>Why Choose Rolands</span>
+							<span class="accordion-icon">+</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								✔ Personally completed by Rolands<br>
+								✔ Careful, methodical workmanship<br>
+								✔ Clean and tidy finish<br>
+								✔ Respect for your home<br>
+								✔ Honest advice on job suitability
+							</p>
+							<p style="margin-top:10px;">
+								You deal directly with the person doing the work —
+								ensuring clear communication and consistent quality.
+							</p>
+						</div>
+					</div>
+
+					<div class="card service accordion">
+						<button class="accordion-toggle" type="button">
+							<span>How It Works</span>
+							<span class="accordion-icon">+</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								You explain the issue → suitability confirmed →
+								work completed neatly and safely →
+								final check for leaks and proper operation.
+							</p>
+							<p style="margin-top:10px; font-weight:600;">
+								Neat. Reliable. Done properly.
+							</p>
+						</div>
+					</div>
+
+					<div class="card service accordion">
+						<button class="accordion-toggle" type="button">
+							<span>Important Note</span>
+							<span class="accordion-icon">+</span>
+						</button>
+						<div class="accordion-content">
+							<p>
+								I carry out minor plumbing work only. If a job requires a licensed
+								plumber, I’ll let you know straight away — your safety and property
+								protection always come first.
+							</p>
+						</div>
+					</div>
+
+				</div>
+			</section>
+
+			<section class="service-area-section">
+				<h2>Service Area</h2>
+
+				<div class="service-area-grid">
+
+					<div class="service-area-text">
+						<p>
+							Roland’s Handyman is based in <strong>Wolverhampton</strong> and covers
+							<strong>up to a 30-mile radius</strong> for most jobs.
+						</p>
+
+						<p>
+							This includes Wolverhampton and surrounding towns and villages.
+							If your job falls outside this area, it can still be arranged —
+							a <strong>small additional mileage charge</strong> will apply per mile.
+						</p>
+
+						<p>
+							If you’re unsure whether your location is covered, feel free to get in touch.
+						</p>
+
+						<button class="btn-primary" onclick="openContact()">
+							Request a quote
+						</button>
+					</div>
+
+					<div class="service-area-map">
+						<iframe
+							src="https://www.google.com/maps?q=west+midlands,+UK&z=9&output=embed"
+							width="100%"
+							height="100%"
+							style="border:0;"
+							allowfullscreen
+							loading="lazy">
+						</iframe>
+					</div>
+
+				</div>
+			</section>
+
+			<section class="reviews-section">
+				<h2>Customer Reviews</h2>
+
+				<div class="reviews-grid">
+
+					{% for review in reviews %}
+					<div class="card review-card{% if loop.index > 3 %} review-extra{% endif %}"{% if loop.index > 3 %} style="display:none;"{% endif %}>
+
+						<div class="review-header">
+							<div class="stars">
+								{% for _ in range(review.rating) %}★{% endfor %}
+							</div>
+
+							{% if review.source %}
+							<span class="review-source">
+								<a href="https://www.google.com/search?client=ms-android-samsung-ss&hs=lZg9&sca_esv=7dc7437ea5d14899&sxsrf=AE3TifPAqD-KGXIlkKVwOwrEl1yObK617w:1766335794672&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E1Rp3wUeVnrw7EH22mZBBxDpQe7Nr5fLoyVL5ZXESipRugQcPmdhiyxsp4UR9STLFTHGrZ3aAFrI7GK_XnBEZaZg6HfVqOV7B0502kQ9KxvMJxd0lGgg1ARKI2p0y8ns-D7Ry8A%3D&q=Rolands-handyman+/+Flatpack+Assembly+Reviews&sa=X&ved=2ahUKEwj6ueHMkc-RAxXXT0EAHRKMGv0Q0bkNegQIIRAD&biw=1387&bih=1323&dpr=1&sei=PSVIacXhJI_OhbIPysHz-A8">{{ review.source|capitalize }}</a>
+							</span>
+							{% endif %}
+						</div>
+
+						<p class="review-text">
+							“{{ review.text }}”
+						</p>
+
+						<p class="review-author">
+							— {{ review.name }}
+						</p>
+
+					</div>
+					{% endfor %}
+
+				</div>
+
+				{% if reviews|length > 3 %}
+				<div class="reviews-toggle-wrap">
+					<a href="#" id="reviewsToggleBtn" class="btn-primary" onclick="return handleReviewsClick(event)">
+						Show more reviews
+					</a>
+				</div>
+				{% endif %}
+			</section>
+
+		</main>
+
+		<footer class="site-footer">
+			© Roland's Handyman 2025 - Powered by <a href="https://hapitech.dev">Hapitech</a>
+		</footer>
+
+	</div>
+
+	<!-- SOCIAL FLOATING BUTTONS -->
+	<div class="social-fabs">
+		<a
+			href="https://www.facebook.com/Rolandshandyman"
+			target="_blank"
+			rel="noopener"
+			class="fab social facebook"
+			aria-label="Facebook"
+		>
+			<img src="{{ url_for('static', filename='img/fbicon.png') }}" alt="Facebook">
+		</a>
+
+		<a
+			href="https://www.instagram.com/rolandshandyman"
+			target="_blank"
+			rel="noopener"
+			class="fab social instagram"
+			aria-label="Instagram"
+		>
+			<img src="{{ url_for('static', filename='img/instaicon.png') }}" alt="Instagram">
+		</a>
+
+		<a
+			href="https://wa.me/447554585833"
+			target="_blank"
+			rel="noopener"
+			class="fab social whatsapp"
+			aria-label="WhatsApp"
+		>
+			<img src="{{ url_for('static', filename='img/whatsappicon.png') }}" alt="WhatsApp">
+		</a>
+	</div>
+
+	<!-- CONTACT FAB (unchanged, keep separate) -->
+	<button class="fab contact-fab" onclick="openContact()">Contact</button>
+
+
+	<!-- CONTACT MODAL -->
+	<div id="backdrop" class="modal-backdrop" onclick="closeContact()">
+		<div class="modal" onclick="event.stopPropagation()">
+			<h3>Request a quote</h3>
+			<br>
+			<form id="contactForm" method="POST" action="/contact">
+			  <input class="input" name="name" placeholder="Your name" required>
+			  <input class="input" name="email" placeholder="Your email" required>
+			  <input class="input" name="phone" placeholder="Contact number">
+			  <input type="hidden" name="travel_cost" id="travel_cost">
+
+			  <select class="input" name="location" required>
+			    <option value="">Select your area</option>
+			    <option>Wolverhampton</option>
+			    <option>Walsall</option>
+			    <option>Birmingham</option>
+			    <option>Other</option>
+			  </select>
+
+			  <input class="input" name="postcode" id="postcode" placeholder="Postcode">
+
+			  <textarea class="input" rows="4" name="message" placeholder="Describe the job"></textarea>
+
+			  <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:8px;">
+			    <button type="button" onclick="closeContact()" class="btn-primary">Close</button>
+			    <button type="submit" class="btn-primary">Send</button>
+			  </div>
+			</form>
+		</div>
+		</div>
+		<div id="distanceWarning" class="modal-backdrop" style="display:none;">
+		  <div class="modal">
+		    <h3>Additional travel charges</h3>
+
+		    <p id="distanceText"></p>
+		    <p id="costText" style="font-weight:600; color:#ff8a00;"></p>
+
+		    <p style="font-size:14px; opacity:0.85;">
+		      Travel outside our standard service area may incur additional charges.
+		    </p>
+
+		    <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:16px;">
+		      <button onclick="closeWarning()" class="btn-primary">Go back</button>
+		      <button onclick="confirmSend()" class="btn-primary">Continue</button>
+		    </div>
+		  </div>
+		</div>
+		<div id="successModal" class="modal-backdrop" style="display:none;">
+		  <div class="modal">
+		    <h3>Request sent ✅</h3>
+
+		    <p>
+		      Thanks for getting in touch. Roland will contact you shortly.
+		    </p>
+		    <br>
+		    <p style="font-size:13px; opacity:0.85;">
+		      Didn't get a reply? <a href="#" onclick="event.preventDefault(); closeSuccess(); openSpamFaq();" style="color:#ff8a00;">Check your inbox settings</a>
+		    </p>
+
+		    <div style="display:flex; justify-content:flex-end; margin-top:16px;">
+		      <button class="btn-primary" onclick="closeSuccess()">Close</button>
+		    </div>
+		  </div>
+		</div>
+		<div id="spamFaqModal" class="modal-backdrop" style="display:none;">
+			<div class="modal">
+				<h3>Not receiving an email?</h3>
+
+				<p style="opacity:0.85;">
+					Our replies sometimes land in spam or junk folders. To make sure you don't miss us:
+				</p>
+
+				<ul style="opacity:0.85; padding-left:20px; margin:14px 0; line-height:1.7; font-size:14px;">
+					<li>Check your spam / junk folder</li>
+					<li>Add <strong>enquiries@rolandshandyman.co.uk</strong> to your contacts or safe senders list</li>
+					<li>Allow up to 24 hours for a reply during busy periods</li>
+					<li>Still nothing? Call or message us directly and we'll sort it out</li>
+				</ul>
+
+				<div style="display:flex; justify-content:flex-end; margin-top:16px;">
+					<button class="btn-primary" onclick="closeSpamFaq()">Got it</button>
+				</div>
+			</div>
+		</div>
+		<div id="postcodeError" class="modal-backdrop" style="display:none;">
+			<div class="modal">
+				<h3>Postcode not recognised</h3>
+
+				<p>
+					Sorry — we couldn’t recognise that postcode using our location system.
+				</p>
+
+				<p style="font-size:14px; opacity:0.85;">
+					Please double-check the postcode and try again.
+				</p>
+
+				<div style="display:flex; justify-content:flex-end; margin-top:16px;">
+					<button onclick="closePostcodeError()" class="btn-primary">
+						OK
+					</button>
+				</div>
+			</div>
+		</div>
+		<div id="sendError" class="modal-backdrop" style="display:none;">
+			<div class="modal">
+				<h3>Something went wrong</h3>
+
+				<p style="opacity:0.85;">
+					Sorry, your request couldn't be sent. Please try again, or contact us directly at <strong>enquiries@rolandshandyman.co.uk</strong>.
+				</p>
+
+				<div style="display:flex; justify-content:flex-end; margin-top:16px;">
+					<button onclick="closeSendError()" class="btn-primary">
+						OK
+					</button>
+				</div>
+			</div>
+		</div>
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+
+		/* =========================
+		   REVIEWS SHOW MORE -> GOOGLE LINK
+		========================= */
+
+		let reviewsExpanded = false;
+
+		function handleReviewsClick(e){
+			const btn = document.getElementById("reviewsToggleBtn");
+
+			if(!reviewsExpanded){
+				e.preventDefault();
+				reviewsExpanded = true;
+
+				document.querySelectorAll(".review-extra").forEach(card => {
+					card.style.display = "flex";
+				});
+
+				btn.textContent = "See more & leave a review on Google";
+				btn.href = "https://business.google.com/v/rolands-handyman/015522923833506136310/2242/_/rev/";
+				btn.target = "_blank";
+				btn.rel = "noopener";
+				btn.classList.add("reviews-google-link");
+
+				return false;
+			}
+
+			// second click: real link now set, let it navigate normally
+			return true;
+		}
+
+		window.handleReviewsClick = handleReviewsClick;
+
+		/* =========================
+		   CONFIG
+		========================= */
+
+		const BASE_POSTCODE = "WV10 0PY";
+		const FREE_RADIUS = 30; // miles
+		const RATE_PER_MILE = 1.75;
+
+		let allowSubmit = false;
+		let baseCoords = null;
+
+
+		/* =========================
+		   MODAL CONTROLS
+		========================= */
+
+		function openContact() {
+			document.getElementById("backdrop").style.display = "flex";
+		}
+
+		function closeContact() {
+			document.getElementById("backdrop").style.display = "none";
+		}
+
+		function closeWarning() {
+			document.getElementById("distanceWarning").style.display = "none";
+		}
+
+		function closeSuccess() {
+			document.getElementById("successModal").style.display = "none";
+			history.replaceState(null, "", window.location.pathname);
+		}
+
+		function openSpamFaq() {
+			document.getElementById("spamFaqModal").style.display = "flex";
+		}
+
+		function closeSpamFaq() {
+			document.getElementById("spamFaqModal").style.display = "none";
+		}
+
+		function showPostcodeError() {
+			document.getElementById("postcodeError").style.display = "flex";
+		}
+
+		function closePostcodeError() {
+			document.getElementById("postcodeError").style.display = "none";
+		}
+
+		function closeSendError() {
+			document.getElementById("sendError").style.display = "none";
+			history.replaceState(null, "", window.location.pathname);
+		}
+
+		function confirmSend() {
+			allowSubmit = true;
+			closeWarning();
+			document.getElementById("contactForm").submit();
+		}
+
+
+		/* =========================
+		   EXPOSE TO HTML
+		========================= */
+
+		window.openContact = openContact;
+		window.closeContact = closeContact;
+		window.closeWarning = closeWarning;
+		window.confirmSend = confirmSend;
+		window.closePostcodeError = closePostcodeError;
+		window.closeSendError = closeSendError;
+		window.closeSuccess = closeSuccess;
+		window.openSpamFaq = openSpamFaq;
+		window.closeSpamFaq = closeSpamFaq;
+
+
+		/* =========================
+		   POST-SUBMIT FEEDBACK
+		   Reads ?sent=1 / ?sent=0 from the redirect after /contact
+		========================= */
+
+		const params = new URLSearchParams(window.location.search);
+
+		if (params.get("sent") === "1") {
+			document.getElementById("successModal").style.display = "flex";
+		} else if (params.get("sent") === "0") {
+			document.getElementById("sendError").style.display = "flex";
+		}
+
+
+		/* =========================
+		   POSTCODE LOOKUP (FREE)
+		========================= */
+
+		async function getCoords(postcode) {
+			const res = await fetch(
+				`https://api.postcodes.io/postcodes/${encodeURIComponent(postcode)}`
+			);
+
+			const data = await res.json();
+
+			if (!data.result) {
+				throw "Invalid postcode";
+			}
+
+			return {
+				lat: data.result.latitude,
+				lon: data.result.longitude
+			};
+		}
+
+
+		/* =========================
+		   DISTANCE CALCULATION
+		========================= */
+
+		function haversine(lat1, lon1, lat2, lon2) {
+			const R = 3958.8; // Earth radius in miles
+			const toRad = d => d * Math.PI / 180;
+
+			const dLat = toRad(lat2 - lat1);
+			const dLon = toRad(lon2 - lon1);
+
+			const a =
+				Math.sin(dLat / 2) ** 2 +
+				Math.cos(toRad(lat1)) *
+				Math.cos(toRad(lat2)) *
+				Math.sin(dLon / 2) ** 2;
+
+			return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+		}
+
+
+		/* =========================
+		   PRELOAD BASE LOCATION
+		========================= */
+
+		getCoords(BASE_POSTCODE)
+			.then(coords => baseCoords = coords)
+			.catch(() => console.warn("Base postcode lookup failed"));
+
+
+		/* =========================
+		   FORM HANDLING
+		========================= */
+
+		document.getElementById("contactForm").addEventListener("submit", async function(e) {
+
+			if (allowSubmit) {
+				return;
+			}
+
+			e.preventDefault();
+
+			const postcode = document.getElementById("postcode").value.trim();
+
+			if (!postcode) {
+				showPostcodeError();
+				return;
+			}
+
+			try {
+				if (!baseCoords) {
+					baseCoords = await getCoords(BASE_POSTCODE);
+				}
+
+				const userCoords = await getCoords(postcode);
+
+				const miles = haversine(
+					baseCoords.lat,
+					baseCoords.lon,
+					userCoords.lat,
+					userCoords.lon
+				);
+
+				if (miles <= FREE_RADIUS) {
+					document.getElementById("travel_cost").value = "No additional travel cost";
+					allowSubmit = true;
+					this.submit();
+					return;
+				}
+
+				const extraMiles = miles - FREE_RADIUS;
+				const cost = (extraMiles * RATE_PER_MILE).toFixed(2);
+				document.getElementById("travel_cost").value =
+					`£${cost} estimated additional travel charge`;
+
+				document.getElementById("distanceText").innerText =
+					`Estimated distance: ${miles.toFixed(1)} miles`;
+
+				document.getElementById("costText").innerText =
+					`Estimated additional travel cost: £${cost}`;
+
+				document.getElementById("distanceWarning").style.display = "flex";
+
+			} catch (err) {
+				console.error(err);
+				showPostcodeError();
+			}
+
+		});
+
+		/* =========================
+		   Accordion
+		========================= */
+
+		document.querySelectorAll(".accordion-toggle").forEach(button => {
+			button.addEventListener("click", () => {
+
+				const current = button.closest(".accordion");
+				const grid = button.closest(".grid");
+
+				// Close others in this grid
+				grid.querySelectorAll(".accordion.open").forEach(acc => {
+					if (acc !== current) {
+						acc.classList.remove("open");
+					}
+				});
+
+				current.classList.toggle("open");
+			});
+		});
+
+		/* =========================
+		   HERO IMAGE ROTATION
+		========================= */
+
+		const heroImages = [
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.40%20(3).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.42%20(4).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.43.jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.16%20(3).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.49%20(1).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.17%20(4).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.46%20(3).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.41%20(4).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.44%20(1).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.49.jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.40%20(1).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.38%20(1).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.40.jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.42.jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.17.jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.47%20(1).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.48%20(4).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.40%20(5).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.38.jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.41%20(3).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.48%20(5).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.15%20(3).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.16%20(4).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.17%20(2).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.15%20(5).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.49%20(5).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.15%20(2).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.46%20(6).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.43%20(2).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.40%20(4).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.42%20(5).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.49%20(2).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.44.jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.47%20(3).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.45.jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.15%20(6).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.46.jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.47%20(2).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.16.jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.48%20(3).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.43%20(4).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.47.jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.42%20(1).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.17%20(3).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.42%20(2).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.43%20(1).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.46%20(4).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.16%20(2).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.39.jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.38%20(2).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.18.jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.15.jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.42%20(3).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.49%20(4).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.15%20(1).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.45%20(1).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.48%20(1).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.46%20(5).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.39%20(1).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.46%20(1).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.16%20(1).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.43%20(3).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.49%20(3).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.40%20(2).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.48.jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.39%20(2).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.41%20(2).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.50.jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.48%20(2).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.44%20(2).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.38%20(3).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.15%20(4).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.17%20(1).jpeg",
+			
+			"/static/img/dump/WhatsApp%20Image%202025-12-12%20at%2021.24.46%20(2).jpeg",
+			
+		];
+
+		let heroIndex = 0;
+
+		if (heroImages.length > 1) {
+			setInterval(() => {
+				heroIndex = (heroIndex + 1) % heroImages.length;
+				const img = document.getElementById("heroImage");
+
+				if (!img) return;
+
+				img.style.opacity = 0;
+
+				setTimeout(() => {
+					img.src = heroImages[heroIndex];
+					img.style.opacity = 1;
+				}, 400);
+			}, 4000);
+		}
+
+	});
+	</script>
+
+</body>
+</html>

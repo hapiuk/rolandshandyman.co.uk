@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Roland's Handyman</title>
+
+  <!-- link to stylesheet served by Flask -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+	<div class="container">
+	<header class="site-header">
+	  <div class="brand">
+	    <img src="{{ url_for('static', filename='img/rolandslogo.png') }}"
+	     alt="Roland's Handyman Logo"
+	     class="logo">
+	    <div>
+	      <div class="site-title">Roland's Handyman</div>
+	      <div class="site-tag">Reliable • Local • Professional</div>
+	    </div>
+	  </div>
+	  <nav>
+	    <button class="btn-primary" onclick="document.querySelector('.fab').click()">Contact</button>
+	  </nav>
+	</header>
+
+	<main>
+	  <section class="hero">
+	    <div class="hero-left">
+	      <h1>Home maintenance done right</h1>
+	      <p>Fast, friendly, and tidy — everything from small fixes to larger projects.</p>
+	      <button class="btn-primary" onclick="document.querySelector('.fab').click()">Request a quote</button>
+	    </div>
+	    <div class="hero-right card">
+	      <img id="heroImage"
+		     src="{{ url_for('static', filename=images[0]) if images }}"
+		     alt="Recent work">
+	    </div>
+	  </section>
+
+	<section>
+		<h2 style="margin-top:18px;">Customer reviews & recent work</h2>
+
+		<div class="grid" style="margin-top:16px; align-items:start;">
+
+			<!-- IMAGE REVIEWS -->
+			{% for review in reviews if review.gallery %}
+			<div class="card review">
+
+				<!-- STAR RATING -->
+				<div style="color:#f97316; font-size:18px; margin-bottom:6px;">
+					{% for _ in range(review.rating) %}★{% endfor %}
+					{% for _ in range(5 - review.rating) %}☆{% endfor %}
+				</div>
+
+				<p style="font-style:italic;">“{{ review.text }}”</p>
+				<p style="margin-top:6px; font-weight:600;">— {{ review.name }}</p>
+
+				<div class="bna-wrapper" style="margin-top:12px;">
+					<div class="bna-image">
+						<img
+							src="{{ url_for('static', filename=review.gallery.after) }}"
+							class="bna-after"
+							alt="After work"
+						>
+						<img
+							src="{{ url_for('static', filename=review.gallery.before) }}"
+							class="bna-before"
+							alt="Before work"
+						>
+					</div>
+					<small class="bna-label">Hover to see before</small>
+				</div>
+
+			</div>
+			{% endfor %}
+
+			<!-- TEXT-ONLY REVIEWS (STACKED 2-UP) -->
+			<div
+				style="
+					display:grid;
+					grid-template-rows:1fr 1fr;
+					gap:16px;
+					height:100%;
+				"
+			>
+				{% for review in reviews if not review.gallery %}
+				<div class="card review">
+
+					<div style="color:#f97316; font-size:18px; margin-bottom:6px;">
+						{% for _ in range(review.rating) %}★{% endfor %}
+						{% for _ in range(5 - review.rating) %}☆{% endfor %}
+					</div>
+
+					<p style="font-style:italic;">“{{ review.text }}”</p>
+					<p style="margin-top:6px; font-weight:600;">— {{ review.name }}</p>
+
+				</div>
+				{% endfor %}
+			</div>
+
+		</div>
+	</section>
+
+	</main>
+	</div>
+
+	<button class="fab" onclick="openContact()">Contact</button>
+
+	<div id="backdrop" class="modal-backdrop" onclick="closeContact()">
+	<div class="modal" onclick="event.stopPropagation()">
+		<h3>Request a quote</h3>
+
+		<form id="contactForm" method="POST" action="/contact">
+		  <input class="input" name="name" placeholder="Your name" required>
+		  <input class="input" name="email" placeholder="Your email" required>
+		  <input class="input" name="phone" placeholder="Contact number">
+		  <input type="hidden" name="travel_cost" id="travel_cost">
+
+		  <select class="input" name="location" required>
+		    <option value="">Select your area</option>
+		    <option>Wolverhampton</option>
+		    <option>Walsall</option>
+		    <option>Birmingham</option>
+		    <option>Other</option>
+		  </select>
+
+		  <input class="input" name="postcode" id="postcode" placeholder="Postcode">
+
+		  <textarea class="input" rows="4" name="message" placeholder="Describe the job"></textarea>
+
+		  <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:8px;">
+		    <button type="button" onclick="closeContact()" class="btn-primary">Close</button>
+		    <button type="submit" class="btn-primary">Send</button>
+		  </div>
+		</form>
+	</div>
+	</div>
+	<div id="distanceWarning" class="modal-backdrop" style="display:none;">
+	  <div class="modal">
+	    <h3>Additional travel charges</h3>
+
+	    <p id="distanceText"></p>
+	    <p id="costText" style="font-weight:600; color:#ff8a00;"></p>
+
+	    <p style="font-size:14px; opacity:0.85;">
+	      Travel outside our standard service area may incur additional charges.
+	    </p>
+
+	    <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:16px;">
+	      <button onclick="closeWarning()" class="btn-primary">Go back</button>
+	      <button onclick="confirmSend()" class="btn-primary">Continue</button>
+	    </div>
+	  </div>
+	</div>
+	<div id="successModal" class="modal-backdrop" style="display:none;">
+	  <div class="modal">
+	    <h3>Request sent ✅</h3>
+
+	    <p>
+	      Thanks for getting in touch. Roland will contact you shortly.
+	    </p>
+
+	    <div style="display:flex; justify-content:flex-end; margin-top:16px;">
+	      <button class="btn-primary" onclick="closeSuccess()">Close</button>
+	    </div>
+	  </div>
+	</div>
+	<div id="postcodeError" class="modal-backdrop" style="display:none;">
+		<div class="modal">
+			<h3>Postcode not recognised</h3>
+
+			<p>
+				Sorry — we couldn’t recognise that postcode using our location system.
+			</p>
+
+			<p style="font-size:14px; opacity:0.85;">
+				Please double-check the postcode and try again.
+			</p>
+
+			<div style="display:flex; justify-content:flex-end; margin-top:16px;">
+				<button onclick="closePostcodeError()" class="btn-primary">
+					OK
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<section>
+		<footer>© Roland's Handyman</footer>
+	</section>
+
+	<script>
+	document.addEventListener("DOMContentLoaded", () => {
+
+		/* =========================
+		   CONFIG
+		========================= */
+
+		const BASE_POSTCODE = "WV10 0PY";
+		const FREE_RADIUS = 30; // miles
+		const RATE_PER_MILE = 1.75;
+
+		let allowSubmit = false;
+		let baseCoords = null;
+
+
+		/* =========================
+		   MODAL CONTROLS
+		========================= */
+
+		function openContact() {
+			document.getElementById("backdrop").style.display = "flex";
+		}
+
+		function closeContact() {
+			document.getElementById("backdrop").style.display = "none";
+		}
+
+		function closeWarning() {
+			document.getElementById("distanceWarning").style.display = "none";
+		}
+
+		function showPostcodeError() {
+			document.getElementById("postcodeError").style.display = "flex";
+		}
+
+		function closePostcodeError() {
+			document.getElementById("postcodeError").style.display = "none";
+		}
+
+		function confirmSend() {
+			allowSubmit = true;
+			closeWarning();
+			document.getElementById("contactForm").submit();
+		}
+
+
+		/* =========================
+		   EXPOSE TO HTML
+		========================= */
+
+		window.openContact = openContact;
+		window.closeContact = closeContact;
+		window.closeWarning = closeWarning;
+		window.confirmSend = confirmSend;
+		window.closePostcodeError = closePostcodeError;
+
+
+		/* =========================
+		   POSTCODE LOOKUP (FREE)
+		========================= */
+
+		async function getCoords(postcode) {
+			const res = await fetch(
+				`https://api.postcodes.io/postcodes/${encodeURIComponent(postcode)}`
+			);
+
+			const data = await res.json();
+
+			if (!data.result) {
+				throw "Invalid postcode";
+			}
+
+			return {
+				lat: data.result.latitude,
+				lon: data.result.longitude
+			};
+		}
+
+
+		/* =========================
+		   DISTANCE CALCULATION
+		========================= */
+
+		function haversine(lat1, lon1, lat2, lon2) {
+			const R = 3958.8; // Earth radius in miles
+			const toRad = d => d * Math.PI / 180;
+
+			const dLat = toRad(lat2 - lat1);
+			const dLon = toRad(lon2 - lon1);
+
+			const a =
+				Math.sin(dLat / 2) ** 2 +
+				Math.cos(toRad(lat1)) *
+				Math.cos(toRad(lat2)) *
+				Math.sin(dLon / 2) ** 2;
+
+			return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+		}
+
+
+		/* =========================
+		   PRELOAD BASE LOCATION
+		========================= */
+
+		getCoords(BASE_POSTCODE)
+			.then(coords => baseCoords = coords)
+			.catch(() => console.warn("Base postcode lookup failed"));
+
+
+		/* =========================
+		   FORM HANDLING
+		========================= */
+
+		document.getElementById("contactForm").addEventListener("submit", async function(e) {
+
+			if (allowSubmit) {
+				return;
+			}
+
+			e.preventDefault();
+
+			const postcode = document.getElementById("postcode").value.trim();
+
+			if (!postcode) {
+				showPostcodeError();
+				return;
+			}
+
+			try {
+				if (!baseCoords) {
+					baseCoords = await getCoords(BASE_POSTCODE);
+				}
+
+				const userCoords = await getCoords(postcode);
+
+				const miles = haversine(
+					baseCoords.lat,
+					baseCoords.lon,
+					userCoords.lat,
+					userCoords.lon
+				);
+
+				if (miles <= FREE_RADIUS) {
+					document.getElementById("travel_cost").value = "No additional travel cost";
+					allowSubmit = true;
+					this.submit();
+					return;
+				}
+
+				const extraMiles = miles - FREE_RADIUS;
+				const cost = (extraMiles * RATE_PER_MILE).toFixed(2);
+				document.getElementById("travel_cost").value =
+					`£${cost} estimated additional travel charge`;
+
+				document.getElementById("distanceText").innerText =
+					`Estimated distance: ${miles.toFixed(1)} miles`;
+
+				document.getElementById("costText").innerText =
+					`Estimated additional travel cost: £${cost}`;
+
+				document.getElementById("distanceWarning").style.display = "flex";
+
+			} catch (err) {
+				console.error(err);
+				showPostcodeError();
+			}
+
+		});
+
+		/* =========================
+		   HERO IMAGE ROTATION
+		========================= */
+
+		const heroImages = [
+			{% for img in images %}
+			"{{ url_for('static', filename=img) }}",
+			{% endfor %}
+		];
+
+		let heroIndex = 0;
+
+		if (heroImages.length > 1) {
+			setInterval(() => {
+				heroIndex = (heroIndex + 1) % heroImages.length;
+				const img = document.getElementById("heroImage");
+
+				if (!img) return;
+
+				img.style.opacity = 0;
+
+				setTimeout(() => {
+					img.src = heroImages[heroIndex];
+					img.style.opacity = 1;
+				}, 400);
+			}, 4000);
+		}
+
+	});
+	</script>
+
+</body>
+</html>
