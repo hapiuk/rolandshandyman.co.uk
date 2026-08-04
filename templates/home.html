@@ -364,8 +364,8 @@
 				<div class="reviews-grid">
 
 					{% for review in reviews %}
-					<div class="card review-card{% if loop.index > 6 %} review-extra{% endif %}"
-					     {% if loop.index > 6 %} style="display:none;"{% endif %}>
+					<div class="card review-card{% if loop.index > 3 %} review-extra{% endif %}"
+					     {% if loop.index > 3 %} style="display:none;"{% endif %}>
 
 						<div class="review-header">
 							<div class="stars">
@@ -392,7 +392,7 @@
 
 				</div>
 
-				{% if reviews|length > 6 %}
+				{% if reviews|length > 3 %}
 				<div class="reviews-toggle-wrap">
 					<a href="#" id="reviewsToggleBtn" class="btn-primary" onclick="return handleReviewsClick(event)">
 						Show more reviews
