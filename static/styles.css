@@ -477,6 +477,7 @@ p {
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  text-align: center;
 }
 
 .btn-primary.reviews-google-link:hover {
